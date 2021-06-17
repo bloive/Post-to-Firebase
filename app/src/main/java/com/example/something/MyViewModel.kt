@@ -22,12 +22,12 @@ class MyViewModel : ViewModel() {
     fun init(email: String, password: String) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                getNews(email, password)
+                signUp(email, password)
             }
         }
     }
 
-    private suspend fun getNews(email: String, password: String) {
+    private suspend fun signUp(email: String, password: String) {
         val response = RetrofitService.retrofitService.signUp(User(email, password))
         if (response.isSuccessful) {
             val res = response.body()
